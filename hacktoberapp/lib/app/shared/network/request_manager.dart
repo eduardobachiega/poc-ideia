@@ -14,7 +14,7 @@ class RequestManager {
             child: Container(
               child: SpinKitChasingDots(
                 size: 75.0,
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).accentColor,
                 duration: Duration(milliseconds: 1500),
               ),
               color: Colors.transparent,
