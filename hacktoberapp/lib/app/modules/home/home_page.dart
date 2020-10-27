@@ -1,9 +1,16 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:hacktoberapp/app/shared/widgets/circle_imageview.dart';
+import 'package:hacktoberapp/app/shared/widgets/default_button.dart';
+import 'package:hacktoberapp/app/shared/widgets/default_input_text.dart';
 import 'home_controller.dart';
+import 'package:hacktoberapp/app/shared/constants/colors.dart' as AppColors;
 
 class HomePage extends StatefulWidget {
   final String title;
+
   const HomePage({Key key, this.title = "Home"}) : super(key: key);
 
   @override
@@ -11,16 +18,52 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends ModularState<HomePage, HomeController> {
-  //use 'controller' variable to access controller
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      backgroundColor: AppColors.PRIMARY_COLOR,
       body: Column(
-        children: <Widget>[],
+        children: <Widget>[
+          Container(
+            color: AppColors.PRIMARY_COLOR,
+            child: Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Image.asset("hacktober.png"),
+            ),
+          ),
+          Card(
+            elevation: 5.0,
+            child: Container(
+              color: AppColors.PRIMARY_COLOR_DARK,
+              child: Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Column(
+                  children: [
+                    DefaultInputText(
+                      labelText: "Github user name",
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    DefaultButton(
+                      text: "Verify",
+                      minWidth: double.infinity,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "0/4",
+                      style:
+                          TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
+                    ),
+                    CircleImageView(imagePath: "github.png", height: 100, width: 100,)
+                  ],
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
