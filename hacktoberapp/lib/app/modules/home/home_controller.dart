@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:hacktoberapp/app/shared/models/user.dart';
+import 'package:hacktoberapp/app/shared/repositories/iuser_repository.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -7,11 +10,14 @@ part 'home_controller.g.dart';
 class HomeController = _HomeControllerBase with _$HomeController;
 
 abstract class _HomeControllerBase with Store {
+  IUserRepository repository = Modular.get();
+
   @observable
-  int value = 0;
+  User user;
 
   @action
-  void increment() {
-    value++;
+  getUser(BuildContext context, String username) async {
+    user = await repository.getInfo(context, username);
+    print(user);
   }
 }
